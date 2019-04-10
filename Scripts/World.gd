@@ -22,8 +22,8 @@ func create_new_world():
 		for y in range(worldSize.y):
 			
 			var cellData = {
-				"depth":World_Generator.get_depth(x,y),
-				"biome":0
+				"depth": World_Generator.get_depth(x,y),
+				"biome": World_Generator.get_biome(x,y)
 			}
 			
 			world[x].append(cellData)
@@ -35,10 +35,32 @@ func paint_cells():
 		for y in range(worldSize.y):
 			var depth = world[x][y]["depth"]
 			var biome = world[x][y]["biome"]
+			var cell
 			
 			if depth <= -0.1:
-				set_cell(x,y,2)
+				cell = 2
+				if biome <= 0:
+					set_cell(x,y,cell+3)
+				else:
+					set_cell(x,y,cell)
 			elif depth <= 0.3:
-				set_cell(x,y,1)
+				cell = 1
+				if biome <= 0:
+					set_cell(x,y,cell+3)
+				else:
+					set_cell(x,y,cell)
 			else:
-				set_cell(x,y,0)
+				cell = 0
+				if biome <= 0:
+					set_cell(x,y,cell+3)
+				else:
+					set_cell(x,y,cell)
+	setup_water()
+
+func setup_water():
+	spawn_objects()
+
+onready var rock = load("res://Scenes/Prefabs/Rocks.tscn")
+func spawn_objects():
+	for x in range(worldSize.x):
+		pass

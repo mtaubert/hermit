@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Global_Scripts/player_crab.gd" type="Script" id=1]
 [ext_resource path="res://Assets/crab_claw.png" type="Texture" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://Assets/crab_head.png" type="Texture" id=5]
 [ext_resource path="res://Assets/scuttle.tres" type="Animation" id=6]
 [ext_resource path="res://Assets/idle_claw.tres" type="Animation" id=7]
-[ext_resource path="res://Assets/shell_2.png" type="Texture" id=8]
-[ext_resource path="res://Assets/shell_3.png" type="Texture" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 35.7718
@@ -27,7 +25,7 @@ shape = SubResource( 1 )
 position = Vector2( -25, -35 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-offset = Vector2( 0, 1.50028 )
+offset = Vector2( 0, -3.22349 )
 region_enabled = true
 region_rect = Rect2( 270, 0, 100, 100 )
 
@@ -86,23 +84,6 @@ anims/scuttle = ExtResource( 6 )
 [node name="claw_animations" type="AnimationPlayer" parent="KinematicBody2D/Node2D"]
 autoplay = "idle"
 anims/idle = ExtResource( 7 )
-
-[node name="shell" type="Sprite" parent="KinematicBody2D/Node2D"]
-position = Vector2( 5.28662, 25.9104 )
-scale = Vector2( 0.25, 0.25 )
-
-[node name="shell2" type="Sprite" parent="KinematicBody2D/Node2D"]
-visible = false
-position = Vector2( -1.52588e-005, 10.5659 )
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 8 )
-
-[node name="shell3" type="Sprite" parent="KinematicBody2D/Node2D"]
-visible = false
-position = Vector2( 25.3732, 30.511 )
-rotation = -0.349066
-scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 9 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true

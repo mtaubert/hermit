@@ -16,12 +16,11 @@ _global_script_class_icons={
 [application]
 
 config/name="Hermit"
-run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-World_Generator="*res://Scripts/Global_Scripts/world_generator.gd"
+World_Generator="*res://Scripts/Global_Scripts/World_Generator.gd"
 asset_loader="*res://Scripts/Global_Scripts/asset_loader.gd"
 
 [input]
@@ -44,11 +43,6 @@ move_left={
 move_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
- ]
-}
-interact={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":70,"unicode":0,"echo":false,"script":null)
  ]
 }
 
