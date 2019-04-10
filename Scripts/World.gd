@@ -62,4 +62,5 @@ func setup_water():
 
 onready var rock = load("res://Scenes/Prefabs/Rocks.tscn")
 func spawn_objects():
-	for x in range(worldSize.x)
+	for x in range(worldSize.x):
+		pass
