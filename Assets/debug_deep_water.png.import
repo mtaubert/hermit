@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/debug_white.png-c11c9a8b13055a0968ea5d391806a426.stex"
+path="res://.import/debug_deep_water.png-869b972b0562b67a215e8df141ba4e8f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/debug_white.png"
-dest_files=[ "res://.import/debug_white.png-c11c9a8b13055a0968ea5d391806a426.stex" ]
+source_file="res://Assets/debug_deep_water.png"
+dest_files=[ "res://.import/debug_deep_water.png-869b972b0562b67a215e8df141ba4e8f.stex" ]
 
 [params]
 
