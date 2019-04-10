@@ -14,6 +14,7 @@ var can_attack = true
 var collectibles
 var pickup_option = null
 var shell
+var dead = false
 
 signal drop_shell(item)
 
@@ -22,9 +23,10 @@ func _ready():
 	connect_collectibles()
 
 func _process(delta):
-	if not lock_input:
-		velocity = handle_movement()
-		handle_other_controls()
+	if not dead:
+		if not lock_input:
+			velocity = handle_movement()
+			handle_other_controls()
 		$KinematicBody2D.move_and_slide(velocity)
 
 """
@@ -75,19 +77,20 @@ func attack(target):
 #handle mouse inputs for attacks
 func _input(event):
 # Mouse in viewport coordinates
-	if not lock_input:
-		var target = (get_global_mouse_position()-$KinematicBody2D.global_position).normalized()
-		if event is InputEventMouseButton:
-			if event.button_index == BUTTON_LEFT:
-				if event.pressed:
-					attacking = true
-					look_to(target)
-				elif can_attack:
-					attacking = false
-					look_to(target)
-					attack(target)
-		if attacking:
-			look_to(target)
+	if not dead:
+		if not lock_input:
+			var target = (get_global_mouse_position()-$KinematicBody2D.global_position).normalized()
+			if event is InputEventMouseButton:
+				if event.button_index == BUTTON_LEFT:
+					if event.pressed:
+						attacking = true
+						look_to(target)
+					elif can_attack:
+						attacking = false
+						look_to(target)
+						attack(target)
+			if attacking:
+				look_to(target)
 
 
 #when the attack cooldown is finished
@@ -110,15 +113,26 @@ func handle_other_controls():
 
 func pickup(item):
 	pickup_option = item
-	$CanvasLayer/UI/Label.visible = true
+	$CanvasLayer/UI/interact_label.visible = true
 
 func cant_pickup():
 	pickup_option = null
 	
-	$CanvasLayer/UI/Label.visible = false
+	$CanvasLayer/UI/interact_label.visible = false
+
+func game_over(cause):
+	$CanvasLayer/UI/game_over.text = "you "+ str(cause) + "\ngame over"
+	dead = true
 
 func connect_collectibles():
 	collectibles = get_tree().get_nodes_in_group("collectible")
 	for item in collectibles:
 		item.connect("can_pickup", self, "pickup")
 		item.connect("cant_pickup", self, "cant_pickup")
+
+#every second decrease the timer by one and lose one hunger, gmae over at 0 hunger.
+func _on_hunger_timer_timeout():
+	$CanvasLayer/UI/hunger_bar.value -= 1
+	if $CanvasLayer/UI/hunger_bar.value <= 0:
+		game_over("starved")
+	$CanvasLayer/UI/hunger_bar/hunger_timer.start()

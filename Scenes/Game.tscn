@@ -3,8 +3,8 @@
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/world_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Scripts/World.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Prefabs/player_crab.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Prefabs/collectible_shell.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Prefabs/collectible_shell.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Prefabs/player_crab.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Image" id=3]
 data = {
@@ -30,12 +30,13 @@ worldSize = Vector2( 200, 100 )
 
 [node name="Sorter" type="YSort" parent="World"]
 
-[node name="Node2D" parent="World/Sorter" instance=ExtResource( 4 )]
-
-[node name="Node2D2" parent="World/Sorter" instance=ExtResource( 5 )]
+[node name="Node2D2" parent="World/Sorter" instance=ExtResource( 4 )]
 position = Vector2( 890.837, 444.665 )
 
+[node name="Node2D" parent="World/Sorter" instance=ExtResource( 5 )]
+
 [node name="Polygon2D" type="Polygon2D" parent="World"]
+visible = false
 position = Vector2( 68.4956, 286.25 )
 texture = SubResource( 2 )
 polygon = PoolVector2Array( 133.296, 141.313, 92.5978, 365.906, 1024.13, 1044.21, 1016.6, 180.503, 481.491, -4.89922, 142.34, 61.4237 )
