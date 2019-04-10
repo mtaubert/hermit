@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 World_Generator="*res://Scripts/Global_Scripts/world_generator.gd"
+asset_loader="*res://Scripts/Global_Scripts/asset_loader.gd"
 
 [input]
 

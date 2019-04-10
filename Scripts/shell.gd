@@ -3,11 +3,11 @@ extends Node2D
 signal can_pickup(item)
 signal cant_pickup()
 
-onready var shell_texture = $Area2D/Sprite.texture 
+var shell_texture
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	shell_texture = asset_loader.shell_list["shell" + str((randi() % 3) +1)]
+	$Area2D/Sprite.texture = shell_texture
 
 func _on_Area2D_body_entered(body):
 	
