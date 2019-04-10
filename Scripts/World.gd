@@ -8,6 +8,7 @@ export(float) var period = 35.0
 export(float) var persistence = 0.8
 
 func _ready():
+	randomize()
 	create_new_world()
 
 func create_new_world():
@@ -36,7 +37,7 @@ func paint_cells():
 			var depth = world[x][y]["depth"]
 			var biome = world[x][y]["biome"]
 			var cell
-			
+			 #Checks the depth and sets the tile accordingly
 			if depth <= -0.1:
 				cell = 2
 				if biome <= 0:
@@ -60,7 +61,18 @@ func paint_cells():
 func setup_water():
 	spawn_objects()
 
-onready var rock = load("res://Scenes/Prefabs/Rocks.tscn")
+onready var beachObject = load("res://Scenes/Prefabs/Beach_Object.tscn")
+export(float) var objectChance = 0.05
+var cellSize = get_cell_size()
 func spawn_objects():
+	print(cellSize)
 	for x in range(worldSize.x):
-		pass
+		for y in range(worldSize.y):
+			if get_cell(x,y) in [0,3]:
+				if rand_range(0,1) <= objectChance:
+					var newBeachObject = beachObject.instance()
+					newBeachObject.scale = Vector2(2,2)
+					newBeachObject.setup(get_cell(x,y))
+					$Sorter.add_child(newBeachObject)
+					var spawnPos =  map_to_world(Vector2(x,y))
+					newBeachObject.position = Vector2(spawnPos.x + rand_range(0, cellSize.x), spawnPos.y + rand_range(0, cellSize.y))

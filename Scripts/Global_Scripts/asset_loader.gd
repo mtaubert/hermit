@@ -1,6 +1,7 @@
 extends Node
 
 var shell_list = {}
+var beachObjectsList = [load("res://Assets/rocks_1.png"), load("res://Assets/rocks_2.png"), load("res://Assets/grass_1.png"), load("res://Assets/grass_2.png")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
