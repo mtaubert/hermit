@@ -10,11 +10,11 @@ func _ready():
 	$Area2D/Sprite.texture = shell_texture
 
 func _on_Area2D_body_entered(body):
-	
+	$Particles2D.emitting = true
 	emit_signal("can_pickup", self)
-	$Area2D/Sprite.modulate.r = 255
 
 
 func _on_Area2D_body_exited(body):
+	
+	$Particles2D.emitting = false
 	emit_signal("cant_pickup")
-	$Area2D/Sprite.modulate.r = 0

@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/shell.gd" type="Script" id=1]
 [ext_resource path="res://Assets/shell_1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/interact_paticle.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 70.0
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 40.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 20.0
+angular_velocity = 80.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 10.0
+radial_accel = 40.0
+scale = 0.1
 
 [node name="Node2D" type="Node2D" groups=[
 "collectible",
@@ -19,6 +34,13 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Area2D"]
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( -2.72452, -2.72449 )
+emitting = false
+fract_delta = false
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
