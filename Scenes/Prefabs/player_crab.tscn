@@ -32,13 +32,13 @@ region_rect = Rect2( 270, 0, 100, 100 )
 position = Vector2( 25, -35 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-offset = Vector2( 0, 1.10208 )
+offset = Vector2( 0, -9.82448 )
 region_enabled = true
 region_rect = Rect2( 270, 0, 100, 100 )
 
 [node name="l_leg1" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( -28.6571, 6.28142 )
-rotation = 0.293117
+rotation = 0.365552
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 region_enabled = true
@@ -46,7 +46,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="r_leg1" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( 25.927, 5.80486 )
-rotation = -0.294568
+rotation = -0.370357
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 flip_h = true
@@ -55,7 +55,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="r_leg2" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( 28.9745, -10.6817 )
-rotation = -1.31631
+rotation = -1.13138
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 flip_h = true
@@ -64,7 +64,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="l_leg2" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( -29.9736, -11.5434 )
-rotation = 1.31649
+rotation = 1.13198
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 region_enabled = true
@@ -81,8 +81,6 @@ texture = ExtResource( 5 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Node2D"]
 anims/scuttle = ExtResource( 6 )
 
-[node name="claw_tween" type="Tween" parent="KinematicBody2D/Node2D"]
-
 [node name="claw_animations" type="AnimationPlayer" parent="KinematicBody2D/Node2D"]
 autoplay = "idle"
 anims/idle = ExtResource( 7 )
@@ -90,3 +88,9 @@ anims/idle = ExtResource( 7 )
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true
 
+[node name="attack_tween" type="Tween" parent="."]
+
+[node name="attack_cooldown" type="Timer" parent="."]
+
+[connection signal="tween_completed" from="attack_tween" to="." method="_on_attack_tween_tween_completed"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
