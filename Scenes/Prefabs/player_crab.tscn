@@ -25,6 +25,7 @@ shape = SubResource( 1 )
 position = Vector2( -25, -35 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+offset = Vector2( 0, -3.22349 )
 region_enabled = true
 region_rect = Rect2( 270, 0, 100, 100 )
 
@@ -32,13 +33,12 @@ region_rect = Rect2( 270, 0, 100, 100 )
 position = Vector2( 25, -35 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
-offset = Vector2( 0, -9.82448 )
 region_enabled = true
 region_rect = Rect2( 270, 0, 100, 100 )
 
 [node name="l_leg1" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( -28.6571, 6.28142 )
-rotation = 0.365552
+rotation = 0.77601
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 region_enabled = true
@@ -46,7 +46,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="r_leg1" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( 25.927, 5.80486 )
-rotation = -0.370357
+rotation = -0.777077
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 flip_h = true
@@ -55,7 +55,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="r_leg2" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( 28.9745, -10.6817 )
-rotation = -1.13138
+rotation = -0.776104
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 flip_h = true
@@ -64,7 +64,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="l_leg2" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( -29.9736, -11.5434 )
-rotation = 1.13198
+rotation = 0.776104
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 region_enabled = true

@@ -20,7 +20,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-World_Generator="*res://Scripts/Global_Scripts/World_Generator.gd"
+World_Generator="*res://Scripts/Global_Scripts/world_generator.gd"
 
 [input]
 

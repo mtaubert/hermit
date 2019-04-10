@@ -20,7 +20,6 @@ worldSize = Vector2( 200, 100 )
 
 [node name="Temp_Camera" type="Camera2D" parent="."]
 position = Vector2( 5140.88, 2990.27 )
-current = true
 zoom = Vector2( 10, 10 )
 drag_margin_h_enabled = false
 
