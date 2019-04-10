@@ -11,13 +11,18 @@ export (float) var ATTACK_COOLDOWN = 0.2
 var attacking = false
 var lock_input = false
 var can_attack = true
+var collectibles
+var pickup_option = null
+var shell
 
 func _ready():
 	$attack_cooldown.wait_time = ATTACK_COOLDOWN + ATTACK_SPEED
+	connect_collectibles()
 
 func _process(delta):
 	if not lock_input:
 		velocity = handle_movement()
+		handle_other_controls()
 		$KinematicBody2D.move_and_slide(velocity)
 
 """
@@ -65,6 +70,7 @@ func attack(target):
 	 ATTACK_SPEED, Tween.TRANS_BACK, Tween.EASE_IN)
 	$attack_tween.start()
 	
+#handle mouse inputs for attacks
 func _input(event):
 # Mouse in viewport coordinates
 	if not lock_input:
@@ -81,10 +87,30 @@ func _input(event):
 		if attacking:
 			look_to(target)
 
-#func _on_attack_tween_tween_completed(object, key):
-#	lock_input = false
 
-
+#when the attack cooldown is finished
 func _on_attack_cooldown_timeout():
 	can_attack = true
 	lock_input = false
+	
+"""
+handle all non movement player controls. interaction hide and attack
+"""
+func handle_other_controls():
+	if pickup_option and Input.is_action_pressed("interact"):
+		shell = pickup_option.shell_texture
+		$KinematicBody2D/Node2D/shell.texture = shell
+		pickup_option.queue_free()
+		
+
+func pickup(item):
+	pickup_option = item
+
+func cant_pickup():
+	pickup_option = null
+
+func connect_collectibles():
+	collectibles = get_tree().get_nodes_in_group("collectible")
+	for item in collectibles:
+		item.connect("can_pickup", self, "pickup")
+		item.connect("cant_pickup", self, "cant_pickup")
