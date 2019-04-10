@@ -105,9 +105,12 @@ func handle_other_controls():
 
 func pickup(item):
 	pickup_option = item
+	$CanvasLayer/UI/Label.visible = true
 
 func cant_pickup():
 	pickup_option = null
+	
+	$CanvasLayer/UI/Label.visible = false
 
 func connect_collectibles():
 	collectibles = get_tree().get_nodes_in_group("collectible")

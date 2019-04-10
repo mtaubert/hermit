@@ -38,7 +38,7 @@ region_rect = Rect2( 270, 0, 100, 100 )
 
 [node name="l_leg1" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( -28.6571, 6.28142 )
-rotation = 0.327097
+rotation = 0.299774
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 region_enabled = true
@@ -46,7 +46,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="r_leg1" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( 25.927, 5.80486 )
-rotation = -0.330121
+rotation = -0.301533
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 flip_h = true
@@ -55,7 +55,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="r_leg2" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( 28.9745, -10.6817 )
-rotation = -1.22955
+rotation = -1.29931
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 flip_h = true
@@ -64,7 +64,7 @@ region_rect = Rect2( 310, 70, 100, 100 )
 
 [node name="l_leg2" type="Sprite" parent="KinematicBody2D/Node2D"]
 position = Vector2( -29.9736, -11.5434 )
-rotation = 1.22994
+rotation = 1.29931
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 region_enabled = true
@@ -95,6 +95,23 @@ current = true
 [node name="attack_tween" type="Tween" parent="."]
 
 [node name="attack_cooldown" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer/UI"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -57.0
+margin_top = -31.0
+margin_right = 57.0
+text = "press f to pick up
+"
 
 [connection signal="tween_completed" from="attack_tween" to="." method="_on_attack_tween_tween_completed"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
