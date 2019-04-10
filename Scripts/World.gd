@@ -1,7 +1,7 @@
 extends TileMap
 
 var world = []
-var worldSize = Vector2(70,50)
+export(Vector2) var worldSize = Vector2(70,50)
 
 export(int) var octaves = 4
 export(float) var period = 35.0
@@ -11,6 +11,7 @@ func _ready():
 	create_new_world()
 
 func create_new_world():
+	world.clear()
 	for cell in get_used_cells():
 		set_cell(cell.x, cell.y, -1)
 	
@@ -35,9 +36,9 @@ func paint_cells():
 			var depth = world[x][y]["depth"]
 			var biome = world[x][y]["biome"]
 			
-			if depth <= -0.2:
+			if depth <= -0.1:
 				set_cell(x,y,2)
-			elif depth <= 0.2:
+			elif depth <= 0.3:
 				set_cell(x,y,1)
 			else:
 				set_cell(x,y,0)
