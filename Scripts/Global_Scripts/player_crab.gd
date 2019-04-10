@@ -15,6 +15,8 @@ var collectibles
 var pickup_option = null
 var shell
 
+signal drop_shell(item)
+
 func _ready():
 	$attack_cooldown.wait_time = ATTACK_COOLDOWN + ATTACK_SPEED
 	connect_collectibles()
@@ -98,8 +100,11 @@ handle all non movement player controls. interaction hide and attack
 """
 func handle_other_controls():
 	if pickup_option and Input.is_action_pressed("interact"):
-		shell = pickup_option.shell_texture
-		$KinematicBody2D/Node2D/shell.texture = shell
+		if shell:
+			#drop the current shell
+			emit_signal("drop_shell", shell)
+		shell = pickup_option
+		$KinematicBody2D/Node2D/shell.texture = shell.shell_texture
 		pickup_option.queue_free()
 		
 
