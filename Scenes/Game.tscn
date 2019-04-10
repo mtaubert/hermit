@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/world_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Scripts/World.gd" type="Script" id=3]
-[ext_resource path="res://Scenes/Prefabs/player_crab.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Prefabs/collectible_shell.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Prefabs/player_crab.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,7 +17,16 @@ worldSize = Vector2( 200, 100 )
 
 [node name="Sorter" type="YSort" parent="World"]
 
-[node name="Node2D" parent="World/Sorter" instance=ExtResource( 4 )]
+[node name="shell" parent="World/Sorter" instance=ExtResource( 4 )]
+position = Vector2( 772.71, 95.2004 )
+
+[node name="shell2" parent="World/Sorter" instance=ExtResource( 4 )]
+position = Vector2( 606.109, 274.495 )
+
+[node name="shell3" parent="World/Sorter" instance=ExtResource( 4 )]
+position = Vector2( 852.044, 284.015 )
+
+[node name="Node2D" parent="World/Sorter" instance=ExtResource( 5 )]
 
 [node name="Temp_Camera" type="Camera2D" parent="."]
 position = Vector2( 5140.88, 2990.27 )
