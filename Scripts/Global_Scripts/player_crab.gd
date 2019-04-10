@@ -129,6 +129,7 @@ func connect_collectibles():
 	for item in collectibles:
 		item.connect("can_pickup", self, "pickup")
 		item.connect("cant_pickup", self, "cant_pickup")
+	print("no of shells: " + str(collectibles.size()))
 
 #every second decrease the timer by one and lose one hunger, gmae over at 0 hunger.
 func _on_hunger_timer_timeout():

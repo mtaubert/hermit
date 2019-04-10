@@ -7,6 +7,8 @@ export(int) var octaves = 4
 export(float) var period = 35.0
 export(float) var persistence = 0.8
 
+signal setup_complete()
+
 func _ready():
 	randomize()
 	create_new_world()
@@ -62,8 +64,12 @@ func setup_water():
 	spawn_objects()
 
 onready var beachObject = load("res://Scenes/Prefabs/Beach_Object.tscn")
+onready var shellObject = load("res://Scenes/Prefabs/collectible_shell.tscn")
 export(float) var objectChance = 0.05
+export(float) var shellChance = 0.001
 var cellSize = get_cell_size()
+
+
 func spawn_objects():
 	print(cellSize)
 	for x in range(worldSize.x):
@@ -76,3 +82,11 @@ func spawn_objects():
 					$Sorter.add_child(newBeachObject)
 					var spawnPos =  map_to_world(Vector2(x,y))
 					newBeachObject.position = Vector2(spawnPos.x + rand_range(0, cellSize.x), spawnPos.y + rand_range(0, cellSize.y))
+				if rand_range(0,1) <= shellChance:
+					var newBeachObject = shellObject.instance()
+					#newBeachObject.scale = Vector2(2,2)
+					#newBeachObject.setup(get_cell(x,y))
+					$Sorter.add_child(newBeachObject)
+					var spawnPos =  map_to_world(Vector2(x,y))
+					newBeachObject.position = Vector2(spawnPos.x + rand_range(0, cellSize.x), spawnPos.y + rand_range(0, cellSize.y))
+	emit_signal("setup_complete")

@@ -93,6 +93,8 @@ scale = Vector2( 0.25, 0.25 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 current = true
+limit_left = 0
+limit_top = 0
 
 [node name="attack_tween" type="Tween" parent="."]
 
