@@ -26,6 +26,14 @@ func handle_movement():
 we want the crab by default to look in the direction its moving, on click for an attack look in the direction of the mouse
 """
 func update_look_direction():
-	#add a magical 90 degree offset for the rotation of the crab
+	#oly update the look direction if there is input
 	if velocity.x or velocity.y:
+		#add a magical 90 degree offset for the rotation of the crab
 		$KinematicBody2D/Node2D.rotation_degrees = rad2deg(velocity.angle()) + 90
+		
+		#set the crab to scuttle if moving
+		if not $KinematicBody2D/Node2D/AnimationPlayer.is_playing():
+			$KinematicBody2D/Node2D/AnimationPlayer.play("scuttle")
+	else:
+		#stop scuttling if stationary
+		$KinematicBody2D/Node2D/AnimationPlayer.stop()

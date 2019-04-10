@@ -1,0 +1,55 @@
+[gd_resource type="Animation" format=2]
+
+[resource]
+resource_name = "scuttle"
+length = 0.35
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("l_leg1:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 21.737, 50.0, 21.737, 15.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("r_leg1:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -22.049, -50.0, -22.049, -15.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("r_leg2:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -62.8, -40.0, -62.8, -80.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("l_leg2:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 62.8, 40.0, 62.8393, 80.0 ]
+}
+
