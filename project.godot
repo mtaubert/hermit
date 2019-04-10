@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="Hermit"
 config/icon="res://icon.png"
 
+[autoload]
+
+World_Generator="*res://Scripts/Global_Scripts/World_Generator.gd"
+
 [input]
 
 move_up={
