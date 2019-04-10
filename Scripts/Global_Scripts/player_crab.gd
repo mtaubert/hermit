@@ -8,14 +8,24 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	handle_movement()
-	
+	velocity = handle_movement()
 	$KinematicBody2D.move_and_slide(velocity)
 
 """
-assess user inputs to get movement direction
+assess user inputs to get movement direction, returns what the players velocity should be from user input
 """
 func handle_movement():
 	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	direction.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	velocity = (direction.normalized() * MAX_SPEED)
+	direction = direction.normalized()
+	update_look_direction()
+	return (direction.normalized() * MAX_SPEED)
+	
+	
+"""
+we want the crab by default to look in the direction its moving, on click for an attack look in the direction of the mouse
+"""
+func update_look_direction():
+	#add a magical 90 degree offset for the rotation of the crab
+	if velocity.x or velocity.y:
+		$KinematicBody2D/Node2D.rotation_degrees = rad2deg(velocity.angle()) + 90
