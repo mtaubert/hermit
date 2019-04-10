@@ -106,8 +106,8 @@ func handle_other_controls():
 		if shell:
 			#drop the current shell
 			emit_signal("drop_shell", shell)
-		shell = pickup_option
-		$KinematicBody2D/Node2D/shell.texture = shell.shell_texture
+		shell = pickup_option.shell_texture
+		$KinematicBody2D/Node2D/shell.texture = shell
 		pickup_option.queue_free()
 		
 

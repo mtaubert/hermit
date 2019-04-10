@@ -48,3 +48,4 @@ zoom = Vector2( 10, 10 )
 drag_margin_h_enabled = false
 
 [connection signal="setup_complete" from="World" to="." method="_on_World_setup_complete"]
+[connection signal="drop_shell" from="World/Sorter/player" to="." method="_on_player_drop_shell"]
