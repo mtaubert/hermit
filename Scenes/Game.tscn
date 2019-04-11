@@ -29,11 +29,13 @@ worldSize = Vector2( 200, 100 )
 [node name="Sorter" type="YSort" parent="World"]
 
 [node name="Polygon2D" type="Polygon2D" parent="World"]
-position = Vector2( 1037.67, 223.766 )
+visible = false
+position = Vector2( 1037.67, 228.192 )
 scale = Vector2( 1.6311, 1.79736 )
 texture = SubResource( 2 )
 invert_border = 0.1
-polygon = PoolVector2Array( -91.2006, 260.735, -281.147, 430.649, -236.509, 455.026, 25.481, 598.1 )
+polygon = PoolVector2Array( -91.4575, 349.217 )
+polygons = [ PoolVector2Array( 0, 0, 10, 10, 10, 30 ), PoolVector2Array( 30, 30, 24, 50, 80, 10 ) ]
 
 [node name="Temp_Camera" type="Camera2D" parent="."]
 position = Vector2( 5140.88, 2990.27 )
