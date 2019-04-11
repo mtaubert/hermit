@@ -13,6 +13,7 @@ func _ready():
 	randomize()
 	create_new_world()
 
+#Creates the world and sets up all the other world objects
 func create_new_world():
 	world.clear()
 	for cell in get_used_cells():
@@ -32,7 +33,11 @@ func create_new_world():
 			world[x].append(cellData)
 	
 	paint_cells()
+	#setup_water()
+	spawn_objects()
+	spawn_player()
 
+#Draws the tiles to each cell according to the water depth and biome
 func paint_cells():
 	for x in range(worldSize.x):
 		for y in range(worldSize.y):
@@ -58,18 +63,18 @@ func paint_cells():
 					set_cell(x,y,cell+3)
 				else:
 					set_cell(x,y,cell)
-	setup_water()
 
 func setup_water():
-	spawn_objects()
+	var waterTiles = get_used_cells_by_id(1)
+	$Polygon2D.polygon = PoolVector2Array(waterTiles)
 
 onready var beachObject = load("res://Scenes/Prefabs/Beach_Object.tscn")
 onready var shellObject = load("res://Scenes/Prefabs/collectible_shell.tscn")
 export(float) var objectChance = 0.05
-export(float) var shellChance = 0.001
+export(float) var shellChance = 0.005
 var cellSize = get_cell_size()
 
-
+#Spawns the random objects in the world
 func spawn_objects():
 	print(cellSize)
 	for x in range(worldSize.x):
@@ -84,9 +89,19 @@ func spawn_objects():
 					newBeachObject.position = Vector2(spawnPos.x + rand_range(0, cellSize.x), spawnPos.y + rand_range(0, cellSize.y))
 				if rand_range(0,1) <= shellChance:
 					var newBeachObject = shellObject.instance()
-					#newBeachObject.scale = Vector2(2,2)
-					#newBeachObject.setup(get_cell(x,y))
 					$Sorter.add_child(newBeachObject)
 					var spawnPos =  map_to_world(Vector2(x,y))
 					newBeachObject.position = Vector2(spawnPos.x + rand_range(0, cellSize.x), spawnPos.y + rand_range(0, cellSize.y))
+
+onready var player = load("res://Scenes/Prefabs/player_crab.tscn")
+func spawn_player():
+	var spawned = false
+	while !spawned: #Tries to find a suitable spawn position
+		var spawn = Vector2(randi()%(int(0.2*worldSize.x)), randi()%(int(0.2*worldSize.y))) #Check top left 20% of the map for a spawn point
+		if get_cell(spawn.x, spawn.y) in [0,3]: #Only spawns on sand
+			var newPlayer = player.instance()
+			$Sorter.add_child(newPlayer)
+			newPlayer.position = map_to_world(spawn)
+			newPlayer.set_name("player")
+			spawned = true
 	emit_signal("setup_complete")

@@ -2,8 +2,6 @@ extends Node2D
 
 onready var world := $World
 onready var shell = load("res://Scenes/Prefabs/collectible_shell.tscn")
-func _on_Button_pressed():
-	world.create_new_world()
 
 func _ready():
 	pass
