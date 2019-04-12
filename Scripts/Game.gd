@@ -7,16 +7,16 @@ func _ready():
 	pass
 
 func _on_World_setup_complete():
-	$World/Sorter/player.connect_collectibles()
+	$Nav/World/Sorter/player.connect_collectibles()
 
 
 func _on_player_drop_shell(item):
 	var drop = shell.instance()
 	drop.init(item)
 	#$World/Sorter.add_child(drop)
-	print($World/Sorter/player.global_position)
+	print($Nav/World/Sorter/player.global_position)
 	#drop.position = $World/Sorter/player.global_position
-	drop.set_position($World/Sorter/player.global_position)
+	drop.set_position($Nav/World/Sorter/player.global_position)
 	
-	$World/Sorter.add_child(drop)
-	$World/Sorter/player.connect_collectibles()
+	$Nav/World/Sorter.add_child(drop)
+	$Nav/World/Sorter/player.connect_collectibles()

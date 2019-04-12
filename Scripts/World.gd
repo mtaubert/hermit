@@ -1,7 +1,7 @@
 extends TileMap
 
 var world = []
-export(Vector2) var worldSize = Vector2(70,50)
+export(Vector2) var worldSize = Vector2(50,50)
 
 export(int) var octaves = 4
 export(float) var period = 35.0
@@ -36,6 +36,7 @@ func create_new_world():
 	#setup_water()
 	spawn_objects()
 	spawn_player()
+	spawn_other_entities()
 
 #Draws the tiles to each cell according to the water depth and biome
 func paint_cells():
@@ -105,3 +106,19 @@ func spawn_player():
 			newPlayer.set_name("player")
 			spawned = true
 	emit_signal("setup_complete")
+
+export(int) var smallSharkNum = 1 
+onready var shark = load("res://Scenes/Prefabs/Shark.tscn")
+
+func spawn_other_entities():
+	for i in range(smallSharkNum):
+		var newShark = shark.instance()
+		$Sorter.add_child(newShark)
+		var suitableCells = get_used_cells_by_id(1) + get_used_cells_by_id(4) #List of shallow water cells of all kinds
+		var habitatAsWorldCoordinates = []
+		
+		for cell in suitableCells:
+			habitatAsWorldCoordinates.append(map_to_world(cell))
+		
+		newShark.position = habitatAsWorldCoordinates[randi()%habitatAsWorldCoordinates.size()] #Random spawn point
+		newShark.setup(get_parent(), habitatAsWorldCoordinates) #Sets up the shark

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Shark.gd" type="Script" id=1]
+[ext_resource path="res://Assets/shark-temp.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 50.0
+height = 120.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 770.065
+
+[node name="Shark" type="KinematicBody2D"]
+script = ExtResource( 1 )
+speed = 500
+
+[node name="Body_Collision_Shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite" parent="Sprites"]
+position = Vector2( -1.42109e-014, 0 )
+rotation = 1.5708
+scale = Vector2( 0.173668, 0.173668 )
+texture = ExtResource( 2 )
+
+[node name="Detection_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
+shape = SubResource( 2 )
+
